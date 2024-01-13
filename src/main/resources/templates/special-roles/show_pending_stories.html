@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="special-roles/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is About Page</title>
+</head>
+<body>
+	<section>
+	
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered">
+			    <div class="modal-content">
+			      <div class="modal-header ">
+			        <h5 class="modal-title " id="exampleModalLabel" style="text-align:center">Update Story Status</h5>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			      
+			       <form th:action="@{/admin/update-status}"  th:object="${story}" method="post" > 
+		                <!-- Field to display or edit Story ID -->
+						<label for="story_id">Story ID:</label>
+						<input type="text" id="story_id" name="story_id" class="form-control" placeholder="Enter Story ID">
+
+								                
+						      <br>
+			        <!-- Dropdown for Story Status -->
+		                <div class="dropdown">
+		                    
+		                    <label>Update Status</label>
+		                    <select class="form-control" id="status" name="status" required="required">
+									    <!-- <option th:each="role : ${allRoles}" th:value="${role.role_id}" th:text="${role.roleName}"> </option>--> 
+									
+										<option value="Approved">Approved</option>
+    									<option value="Pending">Pending</option>
+    									<option value="Rejected">Rejected</option>
+									
+							</select> 
+		                    
+		                </div>
+		                
+			      </div>
+			      <div class="modal-footer">
+			        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --><!-- 
+			        <button type="submit" class="btn btn-secondary">Update Story</button> -->
+			        <button type="submit" class="btn btn-secondary" >Save changes</button>
+			      </div>
+			     
+			    </div>
+			   </form>
+			  </div>
+			</div>
+
+	
+	
+	
+		<div class="card content">
+				<div class="card-body" >
+					<h1 class="text-center">Your Stories</h1>
+					  
+							<!-- Message Box -->
+							<div th:if="${session.message}" class="Container mt-2">
+								<div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+									<span th:text="${session.message.content}"></span>
+								</div>
+								
+								 <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+							
+							
+					  <div class="search-container my-3">
+					
+							<input id="myInput" type="text" class="form-control" placeholder="Search your stories here" />
+							
+							
+						</div> 
+					
+					
+					<div class="table-responsive table-bordered">
+						<table class=" table table-striped table-hover">
+		                    <thead class="thead-dark">
+		                        <tr>
+		                            <th scope=" col">#ID</th>
+		                            <th scope="col">Image</th>
+				                    <th scope="col">Story Title</th>
+				                    <th scope="col">Story Description</th>
+				                    <th scope="col">Story Status</th>
+				                    <th scope="col">Category</th>
+				                    <th scope="col">User</th>
+				                    <th scope="col">Action</th>
+				                    </tr>
+		                    </thead>
+		                    
+		                    
+		                    <tbody id="myTable">
+                    		    <tr th:each="s : ${stories}" th:if="${s.status == 'pending'}">
+		                            <th scope="row" th:text="${'BWA2023'+s.story_id}">1</th>
+		                            <td >
+		                            	<img style="width:120px;height:80px" class="img-fluid" src="" th:src="@{'/uploads/'+${s.image}}" alt="image" />
+		                            </td>
+		                            <td th:text="${s.story_title}"></td>
+		                            <td th:text="${s.story_description}"></td>
+		                            
+		                            <td th:text="${s.status}"></td>
+		                            
+		                            <td th:if="${s.category != null}" th:text="${s.category.categoryTitle}"></td>
+		                            
+		                           <!--  <td th:text="${s.category.categoryTitle}"></td> -->
+		                             <td th:text="${s.user.username}"></td>
+		                             
+		                             <td class="d-flex " style=" justify-content: center;align-items: center;">
+			
+										   
+										    <!-- Using Bootstrap's btn-primary class for Update -->
+										    
+										        <!-- <button type="submit" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Update</button>-->
+										        <!-- Button trigger modal -->
+									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" th:data-story-id="${s.story_id}" onclick="prepareModal(this)">
+									  Update
+									</button>
+										    
+									
+									 </td>
+		                           </tr>
+                    		</tbody>
+                		</table>
+					</div>
+                
+                 <!-- Pagination part -->
+                <nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				    <li th:if="${currentPage != 0}" class="page-item"><a th:href="@{'/admin/pending-stories/'+${currentPage-1}}" class="page-link" href="#">Previous</a></li>
+				    
+				    <li th:classappend="${currentPage== i-1?'active':''}" th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{'/admin/pending-stories/'+${i-1}}" class="page-link" href="#"><span th:text="${i}"></span></a></li>
+				    
+				    <li th:if="${currentPage+1 != totalPages}" class="page-item"><a th:href="@{'/admin/pending-stories/'+${currentPage+1}}"class="page-link" href="#">Next</a></li>
+				  </ul>
+				</nav>
+				</div>
+				
+		</div>
+		
+		<script >
+		
+		$(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#story-link").addClass("active");
+        });
+		
+		$(document).ready(function(){
+			  $("#myInput").on("keyup", function() {
+			    var value = $(this).val().toLowerCase();
+			    $("#myTable tr").filter(function() {
+			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			    });
+			  });
+			});
+
+
+		
+		function prepareModal(buttonElement) {
+		    // Get the story ID from the button's data attribute
+		    var storyId = buttonElement.getAttribute('data-story-id');
+		    
+		    // Set the value in the modal's input field
+		    document.getElementById('story_id').value = storyId;
+		    
+		    // Reset status (if needed)
+		    document.getElementById('selectedStatus').value = status;
+		    document.getElementById('storyStatusDropdownBtn').innerText = "Choose Status";
+		}
+
+
+		
+		</script>
+		
+	</section>
+</body>
+</html>

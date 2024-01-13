@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Book Wheel App</title>
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+        integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <!-- font awesome style -->
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+
+    <!-- responsive style -->
+    <link href="/css/responsive.css" rel="stylesheet" />
+    
+    <!-- Bootsrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+     <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <style>
+        .checkbox-wrap {
+            color: #f07b26 !important;
+        }
+
+        .btn--outline {
+            background: #f07b26;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        
+
+        .btn--block {
+            width: 100%;
+            display: inline-block;
+        }
+    </style>
+  </head>
+  <body>
+    
+  <header class="header_section">
+        <div class="sidebar header_bottom ">
+            <div class="container-fluid ">
+                
+                
+                <nav class="navbar fixed-top navbar-expand-xl custom_nav-container bg-light " style="transform: rotate(360deg);">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="/images/logo.png" alt="">
+                    </a>
+                    </a>
+    
+    
+                    <button  class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="" > </span>
+                    </button>
+    
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav  ">
+                        
+                        	 
+                            <div class="form-inline search-res" style="margin-left: 10px;">
+		                    <input id="myInput" class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+		                    <input type="submit" value="Search" class="btn btn-danger search-button">
+		                  	</div>
+                        	
+                            <li class="nav-item active item" style="margin-left: 60px;">
+                                <a id="home-link"   class="nav-link " th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            
+                           
+		                  
+		                  
+                            <li class="nav-item item">
+                                <a id="category-link"  class="nav-link " href="/normal-category">Categories</a>
+                            </li>
+                            <li class="nav-item item">
+                                <a id="about-link"  class="nav-link " th:href="@{/normal-about}"> About</a>
+                            </li>
+                            
+                            <li class="nav-item item">
+                                <a id="contact-link" class="nav-link" th:href="@{/reader/contact}">Contact</a>
+                            </li>
+                            
+		                  
+		                </li>
+		                
+		                <li class="nav-item item">
+		                  <a id="login-link"  class="nav-link" href="#" th:href="@{/login}"> Login</a>
+		                </li>
+		                <li>
+		                
+		                <li class="nav-item item">
+		                  <a id="register-link"  class="nav-link" href="/register"> Register</a>
+		                </li>
+		                
+                    </div>  </nav>
+            </div>
+        </div>
+    
+    </header>
+		    <!-- end header section -->
+    	
+	<!-- navbar ends here -->
+	
+    <div th:replace="${content}"></div>
+	 
+	 
+	 
+	 
+	 
+	  <!-- info section -->
+    <section class="info_section " style="margin-left: 0%;">
+
+        <div class="container">
+            <div class="contact_nav">
+                <a href="">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <span>
+                        Call : +01 123455678990
+                    </span>
+                </a>
+                <a href="">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span>
+                        Email : demo@gmail.com
+                    </span>
+                </a>
+                <a href="">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>
+                        Location
+                    </span>
+                </a>
+            </div>
+
+            <div class="info_bottom">
+                 <div class="row" style="margin-top: 50px;">
+                    <!--<div class="col-md-2">
+                        <div class="info_logo">
+                            <a href="">
+                                <img src="images/logo2.png" alt="">
+                            </a>
+                        </div>
+                    </div> -->
+                    
+                    <div class="col-md-4  info_links">
+                            <h4 style="color: #fff;">
+                                QUICK LINKS
+                            </h4>
+                            <div class="info_links_menu">
+	                            <a class="" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+	                            <a class="" href="/normal-category">Categories</a>
+	                            <a class="" th:href="@{/normal-about}"> About</a>
+	                            <a class="" th:href="@{/reader/contact}" >Contact Us</a>
+                            
+                            
+                    		</div>
+                    </div>       
+                    <div class="col-md-4 ml-auto">
+                        <div class="social_box">
+                            <a href="https://www.facebook.com">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://twitter.com">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://in.linkedin.com">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.instagram.com">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+        </div>
+    </section>
+    <!-- end info_section -->
+
+
+    <!-- footer section -->
+    <footer class="footer_section">
+        <div class="container">
+            <p>
+                &copy; <span id="displayYear"></span> All Rights Reserved By
+                <a href="https://html.design/">Book Wheel Application</a>
+            </p>
+        </div>
+    </footer>
+    <!-- footer section -->
+
+
+	 <script >
+	 
+	 tinymce.init({
+	        selector: '#mytextarea'
+	      });
+	 
+	 
+		document.addEventListener("DOMContentLoaded", function() {
+		   setTimeout(function() {
+		      var modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+		         modal.show();
+		       }, 4000);
+		    });
+		
+		$(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#home-link").addClass("active");
+        });
+		
+		
+		$(document).ready(function(){
+			 $("#myInput").on("keyup", function() {
+				    var value = $(this).val().toLowerCase();
+				    
+				    //Filtering categories
+				    $("#myTable h2").filter(function() {
+				      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				    });
+				  
+		        
+		        // Filtering stories
+				    $("#myTable2 h5").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+			 });    
+		});
+
+	 </script>
+
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Bootstrap JS and its dependencies --><!-- 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+<!-- Optional JavaScript; jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+ <!-- Include Bootstrap and jQuery JavaScript -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script> -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+
+
+
+    <!-- jQery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.js"></script>
+    <!-- owl slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <!--  OwlCarousel 2 - Filter -->
+    <script src="https://huynhhuynh.github.io/owlcarousel2-filter/dist/owlcarousel2-filter.min.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="js/script.js"></script>
+    
+    
+          
+</body>
+
+</html>

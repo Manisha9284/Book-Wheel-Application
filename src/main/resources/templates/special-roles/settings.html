@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="special-roles/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is Settings Page</title>
+</head>
+<body>
+	 <section class="content">
+        
+         <div class="container" style="margin-bottom: 43px;">
+         
+         	<!-- Message Box -->
+							<div th:if="${session.message}" class="Container mt-2">
+								<div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+									<span th:text="${session.message.content}"></span>
+								</div>
+								
+								 <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <div class="card" style="margin-top: 14px;">
+
+                            <div class="card-body">
+
+                               <h3 class="my-3">Change Password</h3>
+
+                                <form th:action="@{/change-password}" method="post" >
+
+                                    <div class="form-group">
+
+                                        <input name="oldPassword" type="password" class="form-control" placeholder="Enter old password">
+                                    </div>
+                                    
+                                    <div class="form-group" style="margin-top: 22px;">
+                                    
+                                        <input name="newPassword" type="password" class="form-control" placeholder="Enter new password">
+                                    </div>
+                                    
+                                      <div class="container text-center" style="margin-bottom: 12px;">
+			                                <button type="submit" class="btn btn-success">Change</button>
+			                                <button type="reset" class="btn btn-warning">Reset</button>
+
+                            		</div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        
+                
+
+    <!-- end contact section -->
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		
+		<script>
+		$(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#settings-link").addClass("active");
+        }); 
+		
+	      tinymce.init({
+	        selector: '#mytextarea'
+	      });
+	    </script>
+                
+    </section>
+</body>
+</html>

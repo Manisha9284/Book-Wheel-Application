@@ -1,0 +1,251 @@
+@media only screen and (max-width:600px) {
+
+    .sidebar {
+        display: none;
+        width: 80% !important;
+        background: white;
+        height: 100vh;
+        position: fixed;
+        padding-top: 20px;
+    }
+
+    .content {
+        margin-left: 0% !important;
+    }
+
+    .header_top {
+        flex-wrap: wrap;
+    }
+}
+
+
+.sidebar {
+
+    width: 18%;
+    background: white;
+    height: 100%;
+    position: fixed;
+    padding-top: 45px;
+    z-index: 99999999999999999999999999999999;
+}
+
+.sidebar .item {
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: gray;
+}
+
+.sidebar .item:hover {
+    background: #e2e2e2;
+}
+
+.sidebar .divider {
+    height: 3px;
+    width: 100%;
+    background: #e2e2e2;
+    margin-top: 10px;
+}
+
+.content {
+
+    margin-left: 18%;
+}
+
+.sidebar .crossBtn {
+    top: 0;
+    right: 35px;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.logo-div {
+    display: flex;
+    margin-top: -2rem;
+    padding-right: 3rem;
+    align-items: center;
+}
+
+.social_box {
+    display: flex;
+
+}
+
+.social_box .social i {
+
+    background-color: #495057;
+    width: 40px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f07b26;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    font-size: 18px;
+    margin: 77px 0 0 10px
+}
+
+.social_box .social i:hover {
+    color: #252525;
+}
+
+.dropdown .dropdown-menu {
+    width: 100%;
+}
+
+.btn2 {
+    display: inline-block;
+    padding: 10px 45px;
+    background-color: #f07b26;
+    color: #ffffff;
+    border-radius: 5px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border: none;
+}
+
+but2:hover {
+    background-color: #bc570d;
+}
+
+.nav-link {
+    padding: 5px 25px;
+    color: #000000;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 5px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    background-color: #ffffff;
+}
+
+/* .nav-item:hover .nav-link,
+.nav-item.active .nav-link {
+    color: #000000;
+    background-color: #ffffff;
+} */
+
+/* story.html page css */
+
+.story_container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 90px;
+}
+
+.story-content-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.story-content-section .story-card {
+    flex: 1;
+    margin: 20px 20px;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.story-content-section .story-card img {
+    width: 100%;
+    height: auto;
+}
+
+.story-content-section .story-card h1 {
+    margin: 15px 0px;
+    font-size: 28px;
+    color: #1662a1;
+    font-family: sans-serif;
+}
+
+/*  list of stories css */
+
+a {
+    text-decoration: none;
+}
+
+.storyList-container {
+    width: 1100px;
+    max-width: 0 auto;
+}
+
+.storyList-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.storyList-card {
+    flex: 1 1 21rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px 20px;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    padding: 10px 0;
+    align-self: normal;
+}
+
+.storyList-card img {
+    max-width: 200px;
+}
+
+.storyList-card h4 {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+.storyList-card p {
+    margin-bottom: 10px;
+}
+
+
+.storyList-card .btn {
+    display: inline-block;
+    background: green;
+    margin-top: auto;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px
+}
+
+
+/* about css */
+.fcontainer {
+    display: flex;
+    border: 2px solid gray;
+    height: 45vh;
+    /* flex-direction: column-reverse; */
+    /* justify-content: flex-start; */
+    /* justify-content: flex-end;
+    justify-content: center; */
+    /* align-items: center;
+    align-items: flex-end;
+    align-items: flex-start; */
+    flex-wrap: wrap;
+
+
+}
+
+.fitem {
+    background-color: #1662a1;
+    border: 2px solid black;
+    margin: 12px;
+    width: 122px;
+    height: 122px;
+
+}

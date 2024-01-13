@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="special-roles/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is About Page</title>
+</head>4
+<body>
+	 <section class="content">
+
+        <div class="card1 mr-3 ml-3 ">
+
+            <div style="background-color: whitesmoke;" class="card-body">
+
+                        	<!-- Message Box -->
+							<div th:if="${session.message}" class="Container mt-2">
+								<div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+									<span th:text="${session.message.content}"></span>
+								</div>
+								
+								 <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+
+                <h1 class="text-center">Write New Story !!</h1>
+
+                <div class="container-fluid mt-1">
+
+                    <div class="row">
+
+                        <div class="col-md-10 offset-md-1">
+                        	
+
+                            <form id="myForm" th:action="@{/author/process-story}" th:object="${story}"
+                            			enctype="multipart/form-data" method="post" class="mt-2">
+
+                                <!-- first field -->
+                                <div class="input-group">
+
+                                    <div class="input-group-prepend">
+
+                                        <div class="input-group-text ">
+                                            <!-- <i class="fa fa-plus"></i> -->
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <input type="text" id="storytitle" name="story_title"
+                                        placeholder="Enter Story tilte here " class="form-control"
+                                        required="required"
+                                        >
+
+                                </div>
+
+                                <!-- second field -->
+
+                                <div class="input-group mt-3">
+
+                                    <div class="input-group-prepend">
+
+                                        <div class="input-group-text ">
+                                            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                            <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                                        </div>
+
+                                    </div>
+
+                                    <input type="text" id="storydescription" name="story_description"
+                                        placeholder="Enter Story Description here " class="form-control"
+                                        required="required"
+                                        >
+
+                                </div>
+                                
+                                
+                                <input type="hidden" id="status" name="status" value="pending"/>
+
+
+
+                                <div class="input-group mt-3">
+                                    <textarea class="form-control" id="mytextarea" rows="10" style="height: 300px; width:100%"
+                                        placeholder="Enter story content here " name="story_content" 
+                                       ></textarea>
+                                </div>
+
+
+                                <div class="form mb-3 mt-2">
+                                    <label for="category" class="">Category Of Story</label>
+                                  <select class="form-control" id="categoryId" name="categoryId" required="required">
+									    <option th:each="category : ${allCategories}" th:value="${category.categoryId}" th:text="${category.categoryTitle}"> </option>
+									</select>
+
+                                </div>
+                                
+                                <div class="container text-center">
+                                	<img style="" class="img-fluid" src="" th:src="@{'/uploads/'+${story.image}}" alt="image" />
+                                </div>
+
+                                <div class=" mb-3 ">
+                                    <label for="formFile" class="">Upload Book Image</label>
+                                    <input class="form-control Button " type="file" id="formFile" name="storyImage"
+                                    >
+                                </div>
+
+                                <!-- <div class="text-center ">
+                                    <button type="button" class="btn btn-outline-success">Create Story</button>
+                                    <button type="button" class="btn btn-outline-danger">Reset Content</button>
+                                </div> -->
+                                <div class="form-group text-center" style="margin-left: 151px;">
+                                  
+                                    
+                                    <button type="submit" class="btn btn-primary ">Create Story</button>
+                                 	<button style="margin-left: 25px;" type="reset" class="btn btn-warning">Reset Content</button>
+                                  
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		
+		<script>
+		$(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#write-link").addClass("active");
+        }); 
+		
+	      tinymce.init({
+	        selector: '#mytextarea'
+	      });
+	      
+	     
+	    </script>
+    </section>
+</body>
+</html>

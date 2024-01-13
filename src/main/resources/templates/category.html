@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is Categories Page</title>
+</head>
+<body>
+	<section class="content " style=" margin-top: 3% !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4" th:each="cat : ${allCategories}">
+	                <a class="text-decoration-none" th:href="@{'/reader-stories/category/'+${cat.categoryId}}">
+	                    <div class="card">
+	                        <!-- <div class="img-fluid" >
+	                            <img style=" width: 300px !important;height : 200px !important;object-fit: cover !important;" class="img-fluid" src="" th:src="@{'/images/'+${cat.catImage}}" alt="image" />
+	                        </div> -->
+	                        
+	                        <div class="img-fluid">
+						         <img style="width: 100% !important; height: 200px !important; object-fit: cover !important;" 
+						               class="img-fluid" 
+						               th:src="@{'/images/' + ${cat.catImage}}" 
+						               alt="image" />
+						     </div>
+						            
+	                        <h2 style="color:black;" th:value="${cat.categoryId}" th:text="${cat.categoryTitle}"></h2>
+	                    </div>
+	                    <br>
+	      	            </a>
+                </div>
+            </div>
+         </div>
+
+		<script>
+			$(document).ready(() => {
+	            $(".item").removeClass("active");
+	            $("#category-link").addClass("active");
+	        });
+	    </script>
+
+		
+                
+    </section>
+</body>
+</html>

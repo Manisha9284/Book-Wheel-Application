@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="special-roles/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is Contact Page</title>
+</head>
+<body>
+	 <section class="content ftco-section " >
+	 
+	 <div style="margin-top:-70px">
+	 	
+    		<!-- Message Box -->
+							<div th:if="${session.message}" class="Container ">
+								<div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+									<span th:text="${session.message.content}"></span>
+								</div>
+								
+								 <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+	 
+    <div class="container one "  >
+    
+    
+      <div class="row justify-content-center ">
+        <div class="col-md-6 text-center mb-5">
+          <h2 class="heading-section">Subscribe Now To Enjoy Stories!!</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="wrapper">
+            <div class="row no-gutters">
+    
+    		 <h3 class="my-3 ">Amount to be paid</h3>
+    		 <input id="payment_field" type="text" class="form-control my-2" placeholder="Enter amount here" />
+    		 
+    		 <div class="container text-center" >
+    		 	<button onclick="paymentStart()" class="btn btn-success btn-block" style="border-radius: 12px;">PAY</button>
+    		 
+    		 </div>
+    		 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div> 
+   
+   
+   <!-- *************************** Script Starts here -->
+    <script >
+    
+		  //Payment Integration
+		  //first request to server to create order
+		
+		  const paymentStart = () =>{
+		      console.log("payment started..");
+		      let amount=$("#payment_field").val();
+		      console.log(amount);
+		      
+		      if(amount ==""||amount== null){
+		    	   // alert("amount is required !!");
+		    	   swal("Failed!", "amount is required !!", "error");
+		    	    return;
+		      }
+		      
+		      // we will use ajax to send request to server to create order - jquery
+		      $.ajax(
+		          {
+		              url: "/create_order",
+		              data: JSON.stringify({ amount: amount, info: "order_request" }),
+		              contentType: "application/json",
+		              type: "POST",
+		              dataType: "json",
+		              success: function (response) {
+		                  //invoked when success
+		                  console.log(response);
+		                  
+		                  if(response.status=="created")
+		                	  {
+		                	  	//open payment form
+		                	  	let options = {
+		                	  			key:"rzp_test_GgvdjAWe7WEFiv",
+		                	  			amount:response.amount,
+		                	  			currency:"INR",
+		                	  			name:"Book Wheel App",
+		                	  			description:"Subscription",
+		                	  			image:"/images/hand-book-logo.jpg",
+		                	  			order_id:response.id,
+		                	  			handler:function(response){
+		                	  					console.log(response.razorpay_payment_id);
+		                	  					console.log(response.razorpay_order_id);
+		                	  					console.log(response.razorpay_signature);
+		                	  					
+		                	  					console.log("payment successful !!")
+		                	  					//alert("congrates !! Payment successful !!")
+		                	  					
+		                	  					updatePaymentServer(response.razorpay_payment_id,response.razorpay_order_id,"paid");
+		                	  					
+		                	  					
+		                	  			},
+		                	  			prefill: {
+		                	  				"name": "",
+		                	  				"email": "",
+		                	  				"contact": ""
+		                	  				},
+		                	  				"notes": {
+		                	  					"address": "Razorpay Corporate Office"
+
+		                	  					},
+		                	  					"theme": {
+		                	  					"color": "#3399cc"
+		                	  					},
+		                	  	};
+		                	  	let rzp = new Razorpay(options);
+		                	  	
+		                	  	rzp.on("payment.failed", function (response){
+		                	  		console.log(response.error.code);
+		                	  		console.log(response.error.description);
+		                	  		console.log(response.error.source);
+		                	  		console.log(response.error.step);
+		                	  		console.log(response.error.reason);
+		                	  		console.log(response.error.metadata.order_id);
+		                	  		console.log(response.error.metadata.payment_id);
+		                	  		//alert("Oops Payment Failed.. !!");
+		                	  		swal("Failed !!", "Oops Payment Failed.. !!", "error");
+		                	  	});
+		                	  	
+		                	  	rzp.open();
+		                	  	
+		                	  }
+		                  
+		                  
+		              },
+		              error: function (error) {
+		                  //invoked when error
+		                  console.log(error);
+		                  //alert("Something went wrong !!");
+		                  swal("Failed !!", "Something went wrong.. !!", "error");
+		              },
+		          });
+		  };
+		  
+		 function updatePaymentServer(payment_id,order_id,status){
+			  $.ajax({
+				   url: "/update_order",
+		              data: JSON.stringify({ 
+		            	  payment_id: payment_id, 
+		            	  order_id: order_id,
+		            	  status: status,
+		               }),
+		              contentType: "application/json",
+		              type: "POST",
+		              dataType: "json",
+		              success:function(response){
+		            	  swal("Good job!", "congrates !! Payment successful !!", "success");
+		              },
+		              error:function(error){
+		            	  swal("Failed !!", "Your Payment is successful , but we did not get on server , we will contact you as soon as possible ", "error");
+		              },
+			  });
+		  }
+    
+    </script>
+    
+  </section>
+</body>
+</html>

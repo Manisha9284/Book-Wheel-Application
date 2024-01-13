@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="special-roles/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is About Page</title>
+</head>
+<body>
+	 <section class="content">
+        <div class="container">
+        
+        <!-- Message Box -->
+							<div th:if="${session.message}" class="Container mt-2">
+								<div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+									<span th:text="${session.message.content}"></span>
+								</div>
+								
+								 <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+        
+        	<a href="#">
+		    <div class="row g-4 p-3">
+		        <div class="col-sm-4" th:each="story : ${allStories}">
+		        	<a th:href="@{'/stories/'+${story.story_id}}">
+			            <div class="card h-100" style="margin-top: 18px;border-radius: 14px 14px 14px 14px;">
+			                <div class="img-fluid">
+			                    <img style="width: 300px !important; height: 300px !important; object-fit: cover !important;" 
+			                         class="img-fluid" 
+			                         src="" 
+			                         th:src="@{'/uploads/'+${story.image}}" 
+			                         onerror="this.onerror=null; this.src='/images/' + this.src.split('/').pop();" 
+			                         alt="image" />
+			                </div>
+			                <h2 style="color:black;" class="text-center" th:value="${story.story_id}" th:text="${story.story_title}"></h2>
+			            	
+			            </div>
+			          </a>
+		            <br>
+		        </div> 
+		    </div>
+		</a>
+
+                
+
+    <!-- end contact section -->
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		
+		<script>
+		$(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#home-link").addClass("active");
+        }); 
+		
+	      tinymce.init({
+	        selector: '#mytextarea'
+	      });
+	    </script>
+                
+    </section>
+</body>
+</html>

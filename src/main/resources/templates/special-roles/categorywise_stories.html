@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="special-roles/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is Categorywise story Page</title>
+</head>
+<body>
+	<section thclass="content" style="margin-left:18%; margin-top: 3% !important;">
+         <!-- story details code -->
+    
+    		<!-- Message Box starts here -->
+			<div th:if="${session.message}" class="Container mt-2">
+				<div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+					<span th:text="${session.message.content}"></span>
+				</div>
+								
+				<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+			</div>
+
+        	<!-- Message Box Ends here -->
+        
+        <h1 class="text-center" style="margin-top: 70px;"> Stories Of Your Favorite Category !!</h1>
+        
+        <div class="search-container my-3">
+					
+							<input id="myInput" type="text" class="form-control" placeholder="Search your stories here" />
+		</div> 
+    
+    	<div class="container-fluid">
+    		<div class="table-responsive table-bordered" >
+				<table class=" table table-striped table-hover">
+		           <thead class="thead-dark">
+		              <tr>
+	 					  <th scope=" col">#ID</th>
+		                  <th scope="col">Image</th>
+				          <th scope="col">Story Title</th>
+				          <th scope="col">Story Description</th>
+				          <th scope="col">Category</th>
+				          <th scope="col">User</th>
+				          <th scope="col">Action</th>
+				      </tr>	                           
+		           </thead>
+		                    
+		                    
+		           <tbody id="myTable">
+                   		<tr th:each="s : ${stories}">
+		                    <th scope="row" th:text="${'BWA2023'+s.story_id}">1</th>
+		                       <td >
+		                           <img style="width:120px;height:80px" class="img-fluid" src="" th:src="@{'/uploads/'+${s.image}}" alt="image" />
+		                       </td>
+		                       <td th:text="${s.story_title}"></td>
+		                       <td th:text="${s.story_description}"></td>
+		                       <td th:if="${s.category != null}" th:text="${s.category.categoryTitle}"></td>
+		                            
+		                 <!--  <td th:text="${s.category.categoryTitle}"></td> -->
+		                       <td th:text="${s.user.username}"></td>
+		                             
+		                       <td class="d-flex " style=" justify-content: center;align-items: center;">
+									<!-- Using Bootstrap's btn-primary class for Update -->
+									<form th:action="@{'/stories/'+${s.story_id}}" >
+										<button type="submit" class="btn btn-primary btn-sm">Read More</button>
+									</form>
+							   </td>
+		                 </tr>
+                   </tbody>
+               	</table>
+			</div>
+		</div>
+		
+		
+	</div>
+							
+
+
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		
+		<script>
+		
+		$(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#category-link").addClass("active");
+        });
+		
+	      tinymce.init({
+	        selector: '#mytextarea'
+	      });
+	      
+	      
+	      
+	      $(document).ready(() => {
+	            $(".item").removeClass("active");
+	            $("#story-link").addClass("active");
+	        });
+			
+			$(document).ready(function(){
+				  $("#myInput").on("keyup", function() {
+				    var value = $(this).val().toLowerCase();
+				    $("#myTable tr").filter(function() {
+				      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				    });
+				  });
+				});
+			
+	      
+	    </script>
+                
+    </section>
+</body>
+</html>

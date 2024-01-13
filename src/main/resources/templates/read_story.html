@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is Read Story Page</title>
+</head>
+<body>
+<div>
+   
+    <!-- story details code -->
+    
+    	<!-- Message Box -->
+							<div th:if="${session.message}" class="Container mt-2">
+								<div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+									<span th:text="${session.message.content}"></span>
+								</div>
+								
+								 <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+
+    
+    
+    
+    
+    
+    
+    <section>
+	    <div class="content-container d-flex flex-column min-vh-100">
+		        <div class="row flex-grow-1" style="margin-top: 98px;margin-bottom: 200px;">
+				    <div class="col-4">
+				        <div class="position">
+				            <div class="card mt-5" style="width: 30vw;margin-top: 0rem !important;">
+				                <img 
+				                th:src="@{'/uploads/' + ${story.image}}" 
+				                onerror="this.onerror=null; this.src='/images/' + this.src.split('/').pop();"
+				                class="card-img-top" 
+				                alt="...">
+				                
+				                
+				                <div class="card-body">
+				                    <h5 class="text-center" th:text="${story.story_title}"></h5>
+				                    <p class="card-text" th:text="${story.story_description}"></p>
+				                    <a href="#" class="text-center btn btn-primary">Read Now</a>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="col-8">
+				        <h5 class="text-center" th:text="${story.story_title}"></h5>
+				        <p th:utext="${story.story_content}"></p>
+				    </div>
+				</div>
+		  </div>
+	      
+</body>
+
+</html>

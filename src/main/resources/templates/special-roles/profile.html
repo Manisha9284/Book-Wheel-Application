@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="special-roles/base::layout(~{::section})">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>This is About Page</title>
+</head>
+
+<body>
+    <section class="content">
+
+        <div class="container">
+        	
+        	<div class="card profile" style="margin-top:4%;background: whitesmoke;">
+        	
+        		<div class="card-body">
+        		
+        			<div class="container text-center">
+                        <img style="border-radius:50%;width:120px;height:150px" 
+                        		class="img-fluid" 
+                        		src="" 
+                        		th:src="@{'/uploads/'+${user.imageUrl}}" 
+			                    onerror="this.onerror=null; this.src='/images/' + this.src.split('/').pop();" 
+                        		alt="image" />
+                    </div>
+        			
+        			<h1 class="text-center" th:text="${user.username}"></h1>
+        		
+        		<div class="table-responsive table-bordered">
+        			<table class="table text-center ">
+			            <thead>
+			                <tr>
+			                    <th scope="col">#USERID</th>
+			                    <th scope="" col>BWAUSER<span th:text="${user.userId}"></span></th>
+			                </tr>
+			            </thead>
+
+			            <tbody>
+			                <tr>
+			                    <th scope="row">Email</th>
+			                    <td><span th:text="${user.email}"></span></td>
+			                </tr>
+			
+			                <tr>
+			                    <th scope="row">Role</th>
+			                    <td><span th:text="${user.role.roleName}"></span></td>
+			                </tr>
+			
+			                <tr>
+			                    <th scope="row">Account Active</th>
+			                    <td><span th:text="${user.enabled}"></span></td>
+			                </tr>
+			            </tbody>
+					</table>
+       			 </div>
+        		</div>
+        		
+        		<div class="container text-center" style="margin-bottom: 12px;display: flex;justify-content: center;align-items: center !important;">
+			        
+			        <form th:action="@{'/open-edit-profile/' + ${user.userId}}" method="post">
+							        <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+							    </form>
+			        
+
+                 </div>
+        
+        	</div>
+        
+        </div>
+        
+        <script>
+        
+        $(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#profile-link").addClass("active");
+        });
+        
+        </script>
+        
+    </section>
+</body>
+
+</html>

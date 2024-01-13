@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Book Wheel App</title>
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+        integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <!-- font awesome style -->
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+
+    <!-- responsive style -->
+    <link href="/css/responsive.css" rel="stylesheet" />
+    
+    <!-- Bootsrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    
+
+
+</head>
+<body>
+<div>
+    <!-- Navbar  -->
+
+    <header class="header_section">
+        <div class="sidebar header_bottom ">
+            <div class="container-fluid ">
+                
+                
+                <nav class="navbar fixed-top navbar-expand-xl custom_nav-container bg-light " style="transform: rotate(360deg);">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="/images/logo.png" alt="">
+                    </a>
+                    </a>
+    
+    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="" > </span>
+                    </button>
+    
+                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav  ">
+                        
+                        	 
+                            <div class="form-inline search-res" style="margin-left: 10px;">
+		                    <input id="myInput" class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+		                    <input type="submit" value="Search" class="btn btn-danger search-button">
+		                  	</div>
+                        	
+                            <li class="nav-item active item" style="margin-left: 60px;">
+                                <a id="home-link"   class="nav-link " th:href="@{/normal-user/index}">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            
+                           
+		                  
+		                  
+                            <li class="nav-item item">
+                                <a id="category-link"  class="nav-link " href="/normal-category">Categories</a>
+                            </li>
+                            <li class="nav-item item">
+                                <a id="about-link"  class="nav-link " th:href="@{/normal-about}"> About</a>
+                            </li>
+                            
+                            <li class="nav-item item">
+                                <a id="contact-link" class="nav-link" th:href="@{/reader/contact}">Contact</a>
+                            </li>
+                            
+		                  
+		                </li>
+		                
+		                <li class="nav-item item">
+		                  <a id="login-link"  class="nav-link" href="#" th:href="@{/login}"> Login</a>
+		                </li>
+		                <li>
+		                
+		                <li class="nav-item item">
+		                  <a id="register-link"  class="nav-link" href="/register"> Register</a>
+		                </li>
+		                
+                    </div>  </nav>
+            </div>
+        </div>
+    
+    </header>
+ 
+ 
+ 			        <!-- slider section -->
+
+			    <section class="slider_section " style="margin-top: 80px;">
+			      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+			        <div class="carousel-inner">
+			          <div class="carousel-item active">
+			            <div class="container ">
+			              <div class="row">
+			                <div class="col-md-10 mx-auto">
+			                  <div class="detail-box">
+			                    <h1>
+			                      "Endless Adventures Await: Dive into a World of Captivating Stories"
+			                    </h1>
+			
+			                  </div>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			          <div class="carousel-item">
+			            <div class="container ">
+			              <div class="row">
+			                <div class="col-md-10 mx-auto">
+			                  <div class="detail-box">
+			                    <h1>"Indulge in Passionate Tales: Discover the Magic of Love"
+			                    </h1>
+			                    <div class="btn-box">
+			                      <a href="" class="btn1">
+			                        Contact Us
+			                      </a>
+			                      <a href="" class="btn2">
+			                        About Us
+			                      </a>
+			                    </div>
+			                  </div>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			          <div class="carousel-item">
+			            <div class="container ">
+			              <div class="row">
+			                <div class="col-md-10 mx-auto">
+			                  <div class="detail-box">
+			                    <h1>"Unleash Your Inner Explorer: Dive into Action-Packed Adventures"
+			                    </h1>
+			                    <div class="btn-box">
+			                      <a href="" class="btn1">
+			                        Contact Us
+			                      </a>
+			                      <a href="" class="btn2">
+			                        About Us
+			                      </a>
+			                    </div>
+			                  </div>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			          <div class="carousel-item">
+			            <div class="container ">
+			              <div class="row">
+			                <div class="col-md-10 mx-auto">
+			                  <div class="detail-box">
+			                    <h1>"Witness the Unfolding Drama: Dive into Compelling Stories of Love, Loss, and Redemption"
+			                    </h1>
+			                    <div class="btn-box">
+			                      <a href="" class="btn1">
+			                        Contact Us
+			                      </a>
+			                      <a href="" class="btn2">
+			                        About Us
+			                      </a>
+			                    </div>
+			                  </div>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			          <div class="carousel-item">
+			            <div class="container ">
+			              <div class="row">
+			                <div class="col-md-10 mx-auto">
+			                  <div class="detail-box">
+			                    <h1>"Embrace the Dark and Haunting: Explore Terrifying Tales of Horror"
+			                    </h1>
+			                    <div class="btn-box">
+			                      <a href="" class="btn1">
+			                        Contact Us
+			                      </a>
+			                      <a href="" class="btn2">
+			                        About Us
+			                      </a>
+			                    </div>
+			                  </div>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			        </div>
+			        <ol class="carousel-indicators">
+			          <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+			          <li data-target="#customCarousel1" data-slide-to="1"></li>
+			          <li data-target="#customCarousel1" data-slide-to="2"></li>
+			          <li data-target="#customCarousel1" data-slide-to="3"></li>
+			          <li data-target="#customCarousel1" data-slide-to="4"></li>
+			        </ol>
+			      </div>
+			
+			    </section>
+			    <!-- end slider section -->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	     <section class="card_section layout_padding" style="clear:both;margin-top:-73px;">
+	     
+	     
+				<!-- Categories -->
+				<div>
+			        <h2 class="ml-4">Categories</h2>
+			     </div>
+				<div class="container">
+		            <div class="row">
+		                <div id="myTable" class="col-sm-3" th:each="cat : ${allCategories}">
+						    <a class="text-decoration-none" th:href="@{/reader-stories/category/{categoryId}(categoryId=${cat.categoryId})}">
+						        <div class="card">
+						            <div class="img-fluid">
+						                <img style="width: 100% !important; height: 200px !important; object-fit: cover !important;" 
+						                     class="img-fluid" 
+						                     th:src="@{'/images/' + ${cat.catImage}}" 
+						                     alt="image" />
+						            </div>
+						            <h2 style="color:black;" th:value="${cat.categoryId}" th:text="${cat.categoryTitle}"></h2>
+						        </div>
+						        <br>
+						    </a>
+						</div>
+		
+		             <!--  </a>  -->
+		              
+		            </div>
+		         </div>
+	     
+	     
+	     
+	     
+	     	<!-- Trending Stories -->
+		      <div>
+    <h2 class="ml-4">Trending Stories</h2>
+</div>
+
+<div class="row g-4 p-3">
+    <div id="myTable2" class="col-md-2 " th:each="story : ${allStories}">
+        <a class="text-decoration-none" th:href="@{'/reader-stories/'+${story.story_id}}" style="color: inherit;">
+            <div class="card h-100" style="border-radius: 11px 14px 14px 14px">
+                
+                
+                <!-- <img style="border-radius: 11px 14px 0px 0px; height: 13rem;" th:src="@{'/images/' + ${story.image}}" class="card-img-top" alt="image..."> -->
+                
+                <div class="img-fluid" >
+                            <img style="width: 300px !important; height: 300px !important; object-fit: cover !important;" 
+		                         class="img-fluid" 
+		                         src="" 
+		                         th:src="@{'/images/'+${story.image}}"
+			                     onerror="this.onerror=null; this.src='/uploads/' + this.src.split('/').pop();"
+		                         alt="image" />
+                        </div>
+                
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${story.story_title}"></h5>
+                   <!--  <p class="card-text">4 hours</p> -->
+                </div><!-- 
+                <div class="card-footer">
+                    <small class="text-muted">22K Total Readers</small>
+                </div> -->
+            </div>
+        </a>
+    </div>
+</div>
+
+
+				
+				
+				
+		         
+		         
+		          <!-- Button trigger modal -->
+
+
+					<!-- Modal -->
+					<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered w-50">
+        <div class="modal-content bg-light border-0">
+            
+            <!-- Close Button -->
+            <div class="ms-auto me-2 mt-1">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">X</button>
+            </div>
+
+            <!-- Subscription Card -->
+            <div class="card mb-4 shadow w-75 ms-5 mt-1">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal text-center">Free Subscription</h4>
+                </div>
+                <div class="card-body">
+                    <!-- <h1 class="card-title pricing-card-title text-center">$0<small class="text-body-secondary fw-light">/mo</small></h1> -->
+                    <ul class="list-unstyled mt-3 mb-4 text-center">
+                        <li>1 Month free trial</li>
+                        <!-- <li>Email support</li>
+                        <li>Help center access</li> -->
+                    </ul>
+                    <button type="button" class="w-100 btn bg-primary text-light bg-gradient btn-outline-primary">Try free trial now</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+					
+		         
+		         
+
+				
+				
+		</section>
+
+   <!-- info section -->
+    <section class="info_section " style="margin-left: 0%;">
+
+        <div class="container">
+            <div class="contact_nav">
+                <a href="">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <span>
+                        Call : +01 123455678990
+                    </span>
+                </a>
+                <a href="">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span>
+                        Email : demo@gmail.com
+                    </span>
+                </a>
+                <a href="">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>
+                        Location
+                    </span>
+                </a>
+            </div>
+
+            <div class="info_bottom">
+                 <div class="row" style="margin-top: 50px;">
+                    <!--<div class="col-md-2">
+                        <div class="info_logo">
+                            <a href="">
+                                <img src="images/logo2.png" alt="">
+                            </a>
+                        </div>
+                    </div> -->
+                    
+                    <div class="col-md-4  info_links">
+                            <h4 style="color: #fff;">
+                                QUICK LINKS
+                            </h4>
+                            <div class="info_links_menu">
+	                            <a class="" th:href="@{/normal-user/index}">Home <span class="sr-only">(current)</span></a>
+	                            <a class="" href="/normal-category">Categories</a>
+	                            <a class="" th:href="@{/normal-about}"> About</a>
+	                            <a class="" th:href="@{/reader/contact}" >Contact Us</a>
+                            
+                            
+                    		</div>
+                    </div>       
+                    <div class="col-md-4 ml-auto">
+                        <div class="social_box">
+                            <a href="https://www.facebook.com">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://twitter.com">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://in.linkedin.com">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.instagram.com">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+        </div>
+    </section>
+    <!-- end info_section -->
+
+
+    <!-- footer section -->
+    <footer class="footer_section">
+        <div class="container">
+            <p>
+                &copy; <span id="displayYear"></span> All Rights Reserved By
+                <a href="https://html.design/">Book Wheel Application</a>
+            </p>
+        </div>
+    </footer>
+    <!-- footer section -->
+
+
+	 <script >
+	 
+	 tinymce.init({
+	        selector: '#mytextarea'
+	      });
+	 
+	 
+		document.addEventListener("DOMContentLoaded", function() {
+		   setTimeout(function() {
+		      var modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+		         modal.show();
+		       }, 4000);
+		    });
+		
+		$(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#home-link").addClass("active");
+        });
+		
+		
+		$(document).ready(function(){
+			 $("#myInput").on("keyup", function() {
+				    var value = $(this).val().toLowerCase();
+				    
+				    //Filtering categories
+				    $("#myTable h2").filter(function() {
+				      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				    });
+				  
+		        
+		        // Filtering stories
+				    $("#myTable2 h5").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+			 });    
+		});
+
+	 </script>
+
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Bootstrap JS and its dependencies --><!-- 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+<!-- Optional JavaScript; jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+    <!-- jQery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.js"></script>
+    <!-- owl slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <!--  OwlCarousel 2 - Filter -->
+    <script src="https://huynhhuynh.github.io/owlcarousel2-filter/dist/owlcarousel2-filter.min.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+    
+    <script src="js/script.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    
+    
+          
+</body>
+
+</html>

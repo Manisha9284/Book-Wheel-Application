@@ -1,0 +1,194 @@
+latest register page
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is Register Page</title>
+</head>
+
+<body class="reg_page">
+
+
+    <!-- signup section -->
+    <section class="ftco-section reg_page" style="margin-top: -100px;">
+        <div class="container con1 ">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Signup Now !!</h2>
+                </div>
+                
+            </div>
+            
+            <div class="row justify-content-center">
+           
+                <div class="col-md-12 col-lg-10">
+                
+                 <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+				  	<p th:text="${session.message.content}" class="text-center"></p>
+				  	
+				   <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+				</div>
+                    <div class="wrap d-md-flex">
+                        <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
+                            <div class="text w-100">
+                                <h2>Welcome to Signup</h2>
+                                <p>Already have an account?</p>
+                                <a href="/login" class="btn btn-white btn-outline-white">Sign In</a>
+                            </div>
+                        </div>
+                        <div class="login-wrap p-4 p-lg-5">
+                            <div class="d-flex">
+                                <!-- <div class="w-100">
+                                    <h3 style="border: 2px solid #f07b26;" class="btn btn-black btn-outline-black mb-4">
+                                        Sign up as</h3>
+                                </div> -->
+                                
+                                
+
+                                <div class="w-100">
+                                    <p class="social-media d-flex justify-content-end">
+                                        <a href="https://www.facebook.com"
+                                            class="social-icon d-flex align-items-center justify-content-center"><span
+                                                class="fa fa-facebook"></span></a>
+                                        <a href="https://twitter.com"
+                                            class="social-icon d-flex align-items-center justify-content-center"><span
+                                                class="fa fa-twitter"></span></a>
+                                    </p>
+                                </div>
+                            </div>
+                         
+                         <form novalidate="novalidate" onSubmit="checkPassword(event)" th:action="@{/do_register}" method="post" th:object="${user}">
+                            
+                            
+                            <div class="form mb-3 mt-2" >
+                                    <label for="role" class="form-label">Sign up as</label>
+                                  <select class="form-control" id="role_id" name="role_id" required="required">
+									    <!-- <option th:each="role : ${allRoles}" th:value="${role.role_id}" th:text="${role.roleName}"> </option>--> 
+									
+										<option value="502" data-display="ROLE_AUTHOR">Author</option>
+    									<option value="503" data-display="ROLE_NORMAL">Reader</option>
+									
+									</select> 
+									
+                                </div>
+                            
+                            <!-- name field -->
+                                <div class="form-group mb-3">
+                                    <!-- <label class="label" for="name">Username</label> -->
+                                    <input 
+                                    	name="username"
+                                    	type="text" 
+                                    	class="form-control "
+                                    	th:classappend="${#fields.hasErrors('username') ? 'is-invalid':''}" 
+                                    	id="username_field"
+                                    	placeholder="Enter Username" 
+                                    	required
+                                    	th:value="${user.username}"
+                                    >
+                                    <div class="invalid-feedback" th:each="e:${#fields.errors('username')}" th:text="${e}"></div>
+                                </div> 
+
+							<!-- email field -->
+                                <div class="form-group mb-3">
+                                    <!-- <label class="label" for="name">Email</label> -->
+                                    <input 
+                                    	name="email"
+                                    	type="email" 
+                                    	class="form-control" 
+                                    	th:classappend="${#fields.hasErrors('email') ? 'is-invalid':''}" 
+                                    	id="email_field"
+                                    	placeholder="Enter Email" 
+                                    	required
+                                    	th:value="${user.email}"
+                                    >
+                                   <div class="invalid-feedback" th:each="e:${#fields.errors('email')}" th:text="${e}"></div>
+                                    
+                                </div>
+
+							<!-- password field -->
+                                <div class="form-group mb-3 icon">
+                                    <!-- <label class="label" for="password">Password</label> -->
+                                    <input 
+                                    	name="password"
+                                    	type="password" 
+                                    	class="form-control"
+                                    	th:classappend="${#fields.hasErrors('password') ? 'is-invalid':''}" 
+                                    	id="pass1"
+                                    	placeholder="Enter Password" 
+                                    	onkeyup="return validate()"
+                                    	required
+                                    	
+                                    	>
+                                    	
+                                    	
+                                    	<div class="invalid-feedback" th:each="e:${#fields.errors('password')}" th:text="${e}"></div>
+                                </div>
+
+								<!-- confirm password field -->
+                                <div class="form-group mb-3 icon">
+                                    <!-- <label class="label" for="password">Confirm Password</label> -->
+                                    <input 
+                                    	type="password" 
+                                    	class="form-control" 
+                                    	id="pass2"
+                                    	placeholder="Confirm Password" 
+                                    	oninput="return confirm()"
+                                    	required
+                                    >
+                                    
+                                    <div class="errors">
+                                    	<ul>
+                                    		<li id="upper">Atleast one uppercase</li>
+                                    		<li id="lower">Atleast one lowercase</li>
+                                    		<li id="special_char">Atleast one special symbol</li>
+                                    		<li id="number">Atleast one number</li>
+                                    		<li id="length">Atleast 6 characters</li>
+                                    	</ul>
+                                    
+                                    </div>
+                                    
+                                    <p id="message"></p>
+                                    
+                                    <!-- <div class="invalid-feedback" th:each="e:${#fields.errors('confirm_password')}" th:text="${e}"></div> -->
+                                </div>
+
+                                <!-- THIS IS TERMS AND CONDITION AGREEMENT -->
+                                <div class="checkbox">
+                                    <input 
+                                    	name="agreement" 
+                                    	type="checkbox" 
+                                    	id="agreement" 
+                                    />
+                                    <label for="agreement">I accept all terms & conditions</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <button  class="btn btn--outline btn--block reg-button">Sign Up</button>
+                                    
+                                    <button type="reset" class="btn btn--outline btn--block reg-button">Reset</button>
+                                </div>
+                                
+                                
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+      
+        
+    </section>
+
+
+
+    <!-- end signup section -->
+
+</body>
+
+</html>

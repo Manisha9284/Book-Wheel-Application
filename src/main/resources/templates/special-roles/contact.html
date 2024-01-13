@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="special-roles/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is Contact Page</title>
+</head>
+<body>
+	 <section class="content ftco-section " >
+	 
+	 <div style="margin-top:-70px">
+	 	
+    		<!-- Message Box -->
+							<div th:if="${session.message}" class="Container ">
+								<div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+									<span th:text="${session.message.content}"></span>
+								</div>
+								
+								 <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+	 
+    <div class="container one "  >
+    
+    
+      <div class="row justify-content-center ">
+        <div class="col-md-6 text-center mb-5">
+          <h2 class="heading-section">Contact Us</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="wrapper">
+            <div class="row no-gutters">
+              <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch" style="background-color: whitesmoke;">
+                <div class="contact-wrap w-100 p-md-5 p-4 ">
+                  <h3 class="mb-4">Get in touch</h3>
+                  <div id="form-message-warning" class="mb-4"></div>
+                  <div id="form-message-success" class="mb-4">
+                    <!-- Your message was sent, thank you! -->
+                  </div>
+                  
+                            			
+                  <form novalidate="novalidate" th:action="@{/process-contact}" th:object="${contact}" method="post">
+                  
+                    <div class="row">
+                    
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="label" for="fullName">Full Name</label>
+                          <input type="text" 
+                          		 th:classappend="${#fields.hasErrors('fullName') ? 'is-invalid':''}" 
+                          		 id="fullName" 
+                          		 name="fullName"
+                                 placeholder="Enter fullName here " 
+                                 class="form-control"
+                                 required="required"
+                                 th:value="${contact.fullName}"
+                           >
+                           <div class="invalid-feedback" th:each="e:${#fields.errors('fullName')}" th:text="${e}"></div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="label" for="emailAdd">Email Address</label>
+                          <input type="email" 
+                          		 class="form-control" 
+                          		 name="emailAdd"
+                          		 th:classappend="${#fields.hasErrors('emailAdd') ? 'is-invalid':''}"  
+                          		 id="emailAdd" 
+                          		 placeholder="Email" 
+                          		 required="required"
+                          		 th:value="${contact.emailAdd}"
+                          >
+                        </div>
+                      </div>
+                      
+                      
+                      <div class="col-md-12">
+                        <div class="form-group" style="margin-top: 22px;">
+                          <label class="label" for="subject">Subject</label>
+                          <input type="text" 
+                          		 class="form-control" 
+                          		 name="subject"
+                          		 th:classappend="${#fields.hasErrors('subject') ? 'is-invalid':''}"  
+                          		 id="subject" 
+                          		 placeholder="Subject" 
+                          		 required="required"
+                          		  th:value="${contact.subject}"
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group" style="margin-top: 22px;">
+                          <label class="label" for="message">Message</label>
+                          <textarea name="message" 
+                          			class="form-control" 
+                          			th:classappend="${#fields.hasErrors('message') ? 'is-invalid':''}"
+                          			id="message" 
+                          			cols="30" 
+                          			rows="4"
+                            		placeholder="Enter your message here "
+                            		 th:value="${contact.message}"
+                            ></textarea>
+                            
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group" style="margin-top: 22px;">
+                          <input type="submit" value="Send Message" class="btn btn-danger">
+                          <div class="submitting"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+                <div class="info-wrap bg-primary w-100 p-md-5 p-4" style="background: orange !important;">
+                  <h3>Let's get in touch</h3>
+                  <p class="mb-4" style="color:white">We're open for any suggestion or just to have a chat</p>
+                 
+                  <div class="dbox w-100 d-flex align-items-center">
+                    <div class="icon d-flex align-items-center justify-content-center">
+                      <span class="fa fa-phone" style="color:white"></span>
+                    </div>
+                    <div class="text pl-3" style="margin-left: 14px;">
+                      <p style="color:white"><span >Phone:</span> <a href="tel://1234567920" style="color: yellowgreen;">+ 1235 2355 98</a></p>
+                    </div>
+                  </div>
+                  <div class="dbox w-100 d-flex align-items-center">
+                    <div class="icon d-flex align-items-center justify-content-center">
+                      <span class="fa fa-paper-plane" style="color:white"></span>
+                    </div>
+                    <div class="text pl-3 " style="color:white;margin-left: 14px;">
+                      <p><span>Email:</span> <a href="mailto:info@yoursite.com" style="color: yellowgreen;">info@yoursite.com</a></p>
+                    </div>
+                  </div>
+                  <div class="dbox w-100 d-flex align-items-center">
+                    <div class="icon d-flex align-items-center justify-content-center">
+                      <span class="fa fa-globe" style="color:white"></span>
+                    </div>
+                    <div class="text pl-3" style="color:white;margin-left: 14px;">
+                      <p><span>Website</span> <a href="#" style="color: yellowgreen;">yoursite.com</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div> 
+    <script >
+    
+    $(document).ready(() => {
+        $(".item").removeClass("active");
+        $("#contact-link").addClass("active");
+    });
+    
+    </script>
+    
+  </section>
+</body>
+</html>

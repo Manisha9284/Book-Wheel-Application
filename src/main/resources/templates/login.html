@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is Login Page</title>
+</head>
+<body class="sub_page">
+
+    <!-- login section -->
+    <section class="ftco-section" style="margin-top: -90px;">
+        <div class="container con1">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section" style="margin-top: 40px;">Login Here !!</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                
+                <!-- Message Box -->
+							<div th:if="${session.message}" class="Container mt-2">
+								<div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+									<span th:text="${session.message.content}"></span>
+								</div>
+								 <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+                
+                
+
+                    <div class="wrap d-md-flex">
+                        <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
+                            <div class="text w-100" >
+                                <h2>Welcome to login</h2>
+                                <p>Don't have an account?</p>
+                                <a href="/register" class="btn btn-white btn-outline-white" >Sign Up</a>
+                            </div>
+                        </div>
+                        <div class="login-wrap p-4 p-lg-5">
+                            <div class="d-flex">
+                                <div class="w-100">
+                                    <h3 class=" form-label">
+                                        Sign In</h3>
+                                </div>
+
+                                <div class="w-100">
+                                    <p class="social-media d-flex justify-content-end">
+                                        <a href="https://www.facebook.com"
+                                            class="social-icon d-flex align-items-center justify-content-center"><span
+                                                class="fa fa-facebook"></span></a>
+                                        <a href="https://twitter.com"
+                                            class="social-icon d-flex align-items-center justify-content-center"><span
+                                                class="fa fa-twitter"></span></a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <form th:action="@{/do_login}" method="post">
+                                <div class="form-group mb-3">
+                                    <label class="label" for="username">Username</label>
+                                    <input type="" class="form-control" placeholder="Username" name="username" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="password">Password</label>
+                                    <input type="password" class="form-control" placeholder="Password" name="password"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" 
+                                    		class="btn btn--outline btn--block" 
+                                    		style="background: #f07b26;color:#fff;border-radius: 50px;padding: 10px 20px;font-family: 'Roboto';">Sign In</button>
+                                </div>
+
+                                <div class="form-group d-md-flex">
+                                    <!-- <div class="w-50 text-left">
+                                        <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+                                            <input style="background-color: #f07b26 !important;" class="checkbox"
+                                                type="checkbox" checked>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div> -->
+                                    <div class="w-50 text-center" >
+                                        <a th:href="@{/forgot}">Forgot Password ?</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- end login section -->
+
+    </body>
+
+</html>

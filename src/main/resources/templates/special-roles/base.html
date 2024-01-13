@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" 
+      			 xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  				th:fragment="layout(content)">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+
+   <!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<!-- Custom start -->
+	<!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="/css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="/css/style.css" rel="stylesheet" />
+  
+   <link href="/css/loginStyle.css" rel="stylesheet" /> 
+   <link href="/css/sidebar.css" rel="stylesheet" />
+  
+  <!-- responsive style -->
+  <link href="/css/responsive.css" rel="stylesheet" />
+	
+	<!-- Custom end -->
+
+
+    <title th:text="${title}">Base html</title>
+    
+    <!-- jQery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+  </head>
+  
+    <style>
+        .btn.btn-danger {
+            background-color: #f07b26;
+        }
+
+        .card-img-top {
+            height: 50%;
+        }
+
+		.checkbox-wrap {
+            color: #f07b26 !important;
+        }
+
+        .btn--outline {
+            background: #f07b26;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        .btn--outline:hover {
+            background: #f07b26;
+            color: #fff;
+        }
+
+        .btn--block {
+            width: 100%;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="hero_area">
+
+
+
+
+        <!-- sidebar starts here -->
+
+        <div class="sidebar mt-2">
+
+            <div class="logo-div" style="display: flex;">
+                <a class="navbar-brand" href="#">
+                    <img src="/images/logo.png" alt="">
+                </a>
+                <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
+            </div>
+
+
+<!-- 
+            <a id="home-link" href="/author/index" class="item active"><i class="fa fa-home"></i> Home</a> -->
+            
+            <a id="home-link" th:href="${isAdmin ? '/admin/index' : '/author/index'}" class="item active">
+			    <i class="fa fa-home"></i> Home
+			</a>
+
+			<a id="show-stories-link" th:if="${isAdmin}" th:href="@{/admin/pending-stories/0}" class="item">
+			    <i class="fa fa-book"></i> Show Pending Stories
+			</a>
+			
+			<a id="show-stories-link" th:unless="${isAdmin}" th:href="@{/author/show-stories/0}" class="item">
+			    <i class="fa fa-book"></i> Show Stories
+			</a>
+			
+			
+			<a id="show-author-link" th:if="${isAdmin}" th:href="@{/admin/authors-list/0}" class="item">
+			    <i class="fa fa-user"></i> Show Authors
+			</a>
+			
+			<a id="category-link" th:href="${isAdmin ? '/admin/category' : '/author/category'}" class="item">
+			    <i class="fa fa-compass"></i> Categories
+			</a> 
+			
+			<!-- <a  id="category-link" href="/category" class="item" ><i class="fa fa-compass"></i> Categories</a> -->
+			
+			<a id="write-link" th:unless="${isAdmin}" th:href="@{/author/write}" class="item">
+			    <i class="fa fa-pencil-square-o"></i> Write
+			</a>
+			
+			
+            <!-- <a  id="write-link" href="/author/write" class="item" ><i class="fa fa-pencil-square-o"></i> Write</a> -->
+			<!-- <a  id="contact-link" href="/author/contact" class="item"><i class="fa fa-phone-square"></i> Contact Us</a>-->  
+          
+          
+          
+            <a id="contact-link" th:unless="${isAdmin}" th:href="@{/author/contact}"  class="item">
+			    <i class="fa fa-phone-square"></i> Contact Us
+			</a>
+            
+            
+            <a id="profile-link" th:href="${isAdmin ? '/admin/profile' : '/author/profile'}" class="item">
+			   <i class="fa fa-compass"></i> Your Profile
+			</a>
+
+            
+         <!--    <a  id="profile-link" href="/profile" class="item"><i class="fa fa-user"></i> Your Profile</a> -->
+         
+         
+         	<a id="setting-link" th:href="${isAdmin ? '/admin/settings' : '/author/settings'}" class="item">
+			    <i class="fa fa-cog"></i> Settings</a>
+			</a>
+         
+            <!-- <a  id="setting-link" href="/settings" class="item"><i class="fa fa-cog"></i> Settings</a> -->
+            
+            <a  id="logout-link" href="/logout" class="item"><i class="fa fa-sign-out"></i> Logout</a>
+            
+             
+            <div class="divider"></div>
+
+            <div class="social_box">
+                <a href="https://www.facebook.com/" class="social">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="https://twitter.com/" class="social">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="https://in.linkedin.com/" class="social">
+                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.instagram.com/" class="social">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="content mt-2">
+
+            <!-- header section strats -->
+            <header class="header_section">
+            
+            <!-- my custom navbar -->
+                <div class="header_top">
+                    <div class="container-fluid header_top_container">
+                        <div class="lang_box dropdown">
+                            <i onclick="toggleSidebar()" class="fa fa-bars m-3" style="color: white;"></i>
+                           <!--  <div class="dropdown nav">
+                                <button class="btn btn2 btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Languages
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">English</a>
+                                    <a class="dropdown-item" href="#">Hindi</a>
+                                    <a class="dropdown-item" href="#">Marathi</a>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        <div>
+                            <form class="form-inline ">
+                                
+                                <div style="    margin: -26px 0 0 10px;display: flex;">
+                                   
+                                    <li class="nav-item" style="margin-left: 7px;">
+                                        <a class=" nav-link" href="/logout"> Logout</a>
+                                    </li>
+                                    <li class="nav-item" style="margin-left: 7px;">
+                                        <a class=" nav-link" href="/subscribe"> Subscribe</a>
+                                    </li>
+                                </div>
+                                <!--<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>-->
+                            </form>
+                        </div>
+					</div>
+                </div>
+                
+                
+                <!-- bootstrap navbar -->
+                
+            </header>
+        </div>
+    </div>
+    	
+    		<!-- Content area -->
+		 <div class="content" th:replace="${content}"></div>
+
+
+    <!-- sidebar ends here -->
+
+    <!-- info section -->
+    <section class="content info_section mt-2">
+
+        <div class="container">
+            <div class="contact_nav">
+                <a href="">
+                
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <span>
+                        Call : +01 123455678990
+                    </span>
+                </a>
+                <a href="">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span>
+                        Email : demo@gmail.com
+                    </span>
+                </a>
+                <a href="">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>
+                        Location
+                    </span>
+                </a>
+            </div>
+            
+            <div class="info_bottom">
+                 <div class="row" style="margin-top: 50px;">
+                    <!--<div class="col-md-2">
+                        <div class="info_logo">
+                            <a href="">
+                                <img src="images/logo2.png" alt="">
+                            </a>
+                        </div>
+                    </div> -->
+                    
+                    <div class="col-md-4  info_links">
+                            <h4 style="color: #fff;">
+                                QUICK LINKS
+                            </h4>
+                            <div class="info_links_menu">
+	                            <a id="home-link" th:href="${isAdmin ? '/admin/index' : '/author/index'}" class="item active">Home</a>
+<!--                                <a class="nav-link " th:href="@{/normal-user/index}">Home <span class="sr-only">(current)</span></a> -->                               
+								<a  th:href="${isAdmin ? '/admin/category' : '/author/category'}" class="item">Categories</a>
+                               <a  th:unless="${isAdmin}" th:href="@{/author/contact}"  class="item">Contact Us</a> 
+                               <a  th:unless="${isAdmin}" th:href="@{/author/show-stories/0}" class="item">Show Stories</a>
+                            
+                            
+                    		</div>
+                    </div>       
+                    <div class="col-md-4 ml-auto">
+                        <div class="social_box">
+                            <a href="https://www.facebook.com">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://twitter.com">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://in.linkedin.com">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.instagram.com">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+        		</div>
+        		</div>
+
+           
+            </div>
+        </div>
+    </section>
+    <!-- end info_section -->
+
+
+    <!-- footer section -->
+    <footer class="footer_section ">
+        <div class="container">
+            <p>
+                &copy; <span id="displayYear"></span> All Rights Reserved By
+                <a href="https://html.design/">Book-Wheel-Application</a>
+            </p>
+        </div>
+    </footer>
+    <!-- footer section -->
+
+    
+    <!-- bootstrap js -->
+    <script src="/js/bootstrap.js"></script>
+   
+    <!-- owl slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <!--  OwlCarousel 2 - Filter -->
+    <script src="https://huynhhuynh.github.io/owlcarousel2-filter/dist/owlcarousel2-filter.min.js"></script>
+    <!-- custom js -->
+    <script src="/js/custom.js"></script>
+    
+	<!-- SweetAlert script -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	<script >
+	
+		function deleteStory(story_Id)
+		{
+			swal({
+				  title: "Are you sure?",
+				  text: "you want to delete this story..!",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    
+					  
+					  window.location="/author/delete/"+story_Id;
+				  } else {
+				    swal("Your story is safe !!");
+				  }
+				});
+		}
+	
+	</script>
+	
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="/js/script.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>
